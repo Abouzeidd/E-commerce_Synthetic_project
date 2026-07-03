@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  source_db:
+    image: postgres:15
+    container_name: ecommerce_source_db
+    environment:
+      POSTGRES_USER: source_user
+      POSTGRES_PASSWORD: source_pass
+      POSTGRES_DB: ecommerce_source
+    ports:
+      - "5433:5432"
+    volumes:
+      - source_db_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+  warehouse_db:
+    image: postgres:15
+    container_name: ecommerce_warehouse_db
+    environment:
+      POSTGRES_USER: warehouse_user
+      POSTGRES_PASSWORD: warehouse_pass
+      POSTGRES_DB: ecommerce_warehouse
+    ports:
+      - "5434:5432"
+    volumes:
+      - warehouse_db_data:/var/lib/postgresql/data
+      - ./schema:/docker-entrypoint-initdb.d
+
+volumes:
+  source_db_data:
+  warehouse_db_data:
