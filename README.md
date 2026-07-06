@@ -101,7 +101,7 @@ SELECT * FROM fact_order_items LIMIT 10;
 - [x] Source OLTP database (Dockerized)
 - [x] Star Schema warehouse design
 - [x] Python ETL (Extract, Transform, Load)
-- [ ] Orchestrate with Apache Airflow
+- [x] Orchestrate with Apache Airflow
 - [ ] Add dbt for SQL-based transformations & testing
 - [ ] BI dashboard (Metabase / Power BI)
 
