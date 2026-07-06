@@ -8,12 +8,12 @@ analytics.
 ## 🏗️ Architecture
 
 ```
-┌─────────────┐       ┌───────────────┐       ┌──────────────────┐
-│  source_db  │──ETL─▶│  Python ETL   │──────▶│   warehouse_db    │
-│ (OLTP, raw) │       │ (Extract/     │       │ (Star Schema,     │
-│  Postgres   │       │  Transform/   │       │  OLAP-ready)      │
-│             │       │  Load)        │       │  Postgres         │
-└─────────────┘       └───────────────┘       └──────────────────┘
+┌─────────────┐         ┌───────────────┐         ┌──────────────────┐
+│  source_db  │──ETL─▶  │ Python ETL   │ ──────▶ │  warehouse_db    │
+│ (OLTP, raw) │         │ (Extract/     │         │ (Star Schema,    │
+│  Postgres   │         │  Transform/   │         │  OLAP-ready)     │
+│             │         │  Load)        │         │  Postgres        │
+└─────────────┘         └───────────────┘         └──────────────────┘
 ```
 
 Two isolated PostgreSQL instances run in Docker containers:
@@ -25,13 +25,13 @@ a denormalized Star Schema optimized for analytical queries.
 
 ## 🛠️ Tech Stack
 
-| Component        | Tool                     |
-|-------------------|--------------------------|
-| Source & Warehouse | PostgreSQL 15           |
-| Containerization   | Docker & Docker Compose |
+| Component          | Tool                                  |
+|--------------------|---------------------------------------|
+| Source & Warehouse | PostgreSQL 15                         |
+| Containerization   | Docker & Docker Compose               |
 | ETL                | Python (pandas, SQLAlchemy, psycopg2) |
-| Orchestration (planned) | Apache Airflow      |
-| Transformation (planned) | dbt                |
+| Orchestration      | Apache Airflow                        |
+| Transformation     | dbt                                   |
 
 ## 📂 Project Structure
 
