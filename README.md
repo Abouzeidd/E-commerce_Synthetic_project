@@ -46,6 +46,10 @@ a denormalized Star Schema optimized for analytical queries.
 ├── etl/
 │   ├── etl.py                  # Extract-Transform-Load script
 │   └── requirements.txt
+│
+├── airflow/
+│   └── dags/
+│       └── ecommerce_etl_dag.py    # Orchestrate with Apache Airflow 
 └── README.md
 ```
 
