@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    schema: staging   # اسم الـ schema الفعلي جوه warehouse_db
+    tables:
+      - name: customers
+      - name: products
+      - name: orders
+      - name: order_items
