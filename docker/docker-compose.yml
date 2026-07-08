@@ -91,6 +91,14 @@ services:
       - ../etl:/opt/airflow/etl
     command: scheduler
 
+  metabase:
+    image: metabase/metabase:latest
+    container_name: ecommerce_metabase
+    depends_on:
+      - warehouse_db
+    ports:
+      - "3000:3000"
+
 volumes:
   source_db_data:
   warehouse_db_data:

@@ -47,6 +47,7 @@ daily schedule.
 | Orchestration     | Apache Airflow (LocalExecutor)      |
 | Transformation    | dbt (dbt-postgres)                  |
 | Testing           | dbt tests (unique, not_null, relationships) |
+| Visualization     | Metabase                            |
 
 ---
 
@@ -128,6 +129,7 @@ This spins up:
 | `airflow_db` | Airflow metadata | internal only |
 | `airflow-webserver` | Airflow UI | `localhost:8080` (admin/admin) |
 | `airflow-scheduler` | Runs the DAG daily | — |
+| `metabase` | BI dashboard | `localhost:3000` |
 
 ### 2. Run the raw load (Extract + Load)
 ```bash
@@ -162,6 +164,25 @@ GROUP BY c.full_name
 ORDER BY total_spent DESC;
 ```
 
+### 5. Visualize with Metabase
+Open `localhost:3000`, create an admin account, and connect a PostgreSQL
+database with:
+
+| Field | Value |
+|---|---|
+| Host | `warehouse_db` |
+| Port | `5432` |
+| Database name | `ecommerce_warehouse` |
+| Username | `warehouse_user` |
+| Password | `warehouse_pass` |
+
+> Note: use the container name (`warehouse_db`) and internal port (`5432`),
+> not `localhost`/`5434` — Metabase runs on the same Docker network as the
+> other services.
+
+From there, build questions and dashboards directly on top of
+`fact_order_items`, `dim_customer`, `dim_product`, and `dim_date`.
+
 ---
 
 ## 📈 Roadmap
@@ -171,8 +192,7 @@ ORDER BY total_spent DESC;
 - [x] Python raw Extract + Load (source → staging)
 - [x] Orchestration with Apache Airflow (daily DAG)
 - [x] dbt: staging models, marts, and data tests
-- [ ] BI dashboard (Metabase / Power BI)
-- [ ] SCD Type 2 automation via dbt snapshots
+- [x] BI dashboard (Metabase)
 
 ---
 
