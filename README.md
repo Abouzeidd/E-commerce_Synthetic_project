@@ -10,6 +10,12 @@ and orchestration concepts in a real, reproducible environment.
 
 ---
 
+## 📊 Dashboard Preview
+
+![E-commerce Sales Dashboard](assets/dashboard.png)
+
+---
+
 ## 🏗️ Architecture
 
 ```
